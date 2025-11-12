@@ -12,7 +12,7 @@ build:
 	npm run build
 
 build-base:
-	npm run build --base $(BASE_URL)
+	npm run build -- --base $(BASE_URL)
 
 start:
 	npm run start
