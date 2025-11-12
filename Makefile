@@ -3,6 +3,9 @@
 clean:
 	rm -rf dist
 
+config:
+	npm install
+
 build:
 	npm run build
 
@@ -15,4 +18,4 @@ serve:
 mermaid:
 	npm run mermaid
 
-build-cicd: build mermaid
+build-cicd: config build mermaid
