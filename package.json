@@ -1,0 +1,18 @@
+{
+  "name": "likec4-workspace",
+  "version": "1.0.0",
+  "description": "LikeC4 architecture diagrams",
+  "private": true,
+  "dependencies": {
+    "likec4": "1.44.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "scripts": {
+    "build": "likec4 build",
+    "start": "likec4 start",
+    "serve": "http-server dist -p 8080 -o",
+    "mermaid": "likec4 gen mermaid -o ./dist/mermaid"
+  }
+}
