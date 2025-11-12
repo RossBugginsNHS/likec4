@@ -1,11 +1,13 @@
 BASE_URL ?= ""
 
 .PHONY: build start serve mermaid clean
-
 clean:
 	rm -rf dist
 
 config:
+	sudo apt update && sudo apt-get install graphviz
+	awk '{ system("asdf plugin add " $1) }' < .tool-versions
+	asdf install
 	npm install
 
 build:
@@ -24,3 +26,5 @@ mermaid:
 	npm run mermaid
 
 build-cicd: config build-base mermaid
+
+rebuild: clean config build mermaid
