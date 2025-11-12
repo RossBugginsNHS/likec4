@@ -1,3 +1,5 @@
+BASE_URL ?= ""
+
 .PHONY: build start serve mermaid clean
 
 clean:
@@ -9,6 +11,9 @@ config:
 build:
 	npm run build
 
+build-base:
+	npm run build --base $(BASE_URL)
+
 start:
 	npm run start
 
@@ -18,4 +23,4 @@ serve:
 mermaid:
 	npm run mermaid
 
-build-cicd: config build mermaid
+build-cicd: config build-base mermaid
