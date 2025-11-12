@@ -35,7 +35,6 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist
-          name: like-c4-docs
 
   # Deployment job
   deploy-pages:
