@@ -5,7 +5,7 @@ clean:
 	rm -rf dist
 
 config:
-	sudo apt update && sudo apt-get install graphviz
+	sudo apt update && sudo apt-get install -y graphviz
 	awk '{ system("asdf plugin add " $1) }' < .tool-versions
 	asdf install
 	npm install
