@@ -5,7 +5,7 @@
     "SHOWWELCOME": "true",
     "UPDATEFROMTEMPLATE": "false"
   },
-  "image": "ghcr.io/nhsdigital/nhs-notify-devcontainer-loaded:1.0.18",
+  "image": "ghcr.io/nhsdigital/nhs-notify-devcontainer-loaded:main",
   "name": "Local Development",
   "postStartCommand": "make rebuild"
 }
