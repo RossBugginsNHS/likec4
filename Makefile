@@ -1,4 +1,5 @@
 BASE_URL ?= ""
+SRC_DIR ?= src
 
 .PHONY: build start serve mermaid clean
 clean:
@@ -23,7 +24,11 @@ serve:
 	npm run serve
 
 mermaid:
-	npm run mermaid
+	@for dir in $(SRC_DIR)/*/ ; do \
+		dirname=$$(basename $$dir); \
+		echo "Processing $$dirname..."; \
+		npm run mermaid $(SRC_DIR)/$$dirname -- --outdir dist/mermaid/$$dirname; \
+	done
 
 build-cicd: config build-base mermaid
 

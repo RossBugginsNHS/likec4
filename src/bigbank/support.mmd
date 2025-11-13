@@ -1,0 +1,13 @@
+---
+title: "Customer Service Staff"
+---
+graph TB
+  Customer[fa:fa-user Personal Banking Customer]
+  subgraph Bigbank["Big Bank plc"]
+    Bigbank.SupportStaff[fa:fa-user Customer Service Staff]
+    Bigbank.Backoffice[fa:fa-user Back Office Staff]
+    Bigbank.Mainframe[Mainframe Banking System]
+  end
+  Customer -. "Asks questions to" .-> Bigbank.SupportStaff
+  Bigbank.SupportStaff -. "Uses" .-> Bigbank.Mainframe
+  Bigbank.Backoffice -. "Uses" .-> Bigbank.Mainframe

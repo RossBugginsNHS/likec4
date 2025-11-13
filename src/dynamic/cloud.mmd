@@ -1,0 +1,13 @@
+---
+title: "Cloud System"
+---
+graph LR
+  Customer[fa:fa-user Customer]
+  subgraph Cloud["Cloud System"]
+    Cloud.Ui[Frontend]
+    Cloud.Backend[Backend]
+    Cloud.Storage([Data Stores])
+  end
+  Customer -. "opens in browser" .-> Cloud.Ui
+  Cloud.Backend -. "[...]" .-> Cloud.Storage
+  Cloud.Ui -. "[...]" .-> Cloud.Backend

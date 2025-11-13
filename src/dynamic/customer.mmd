@@ -1,0 +1,9 @@
+---
+title: "Customer"
+---
+graph TB
+  Customer[fa:fa-user Customer]
+  subgraph Cloud["Cloud System"]
+    Cloud.Ui[Frontend]
+  end
+  Customer -. "opens in browser" .-> Cloud.Ui

@@ -1,0 +1,15 @@
+---
+title: "Frontend"
+---
+graph TB
+  Customer[fa:fa-user Customer]
+  subgraph CloudUi["Frontend"]
+    CloudUi.Web[Customer Dashboard]
+  end
+  subgraph CloudBackend["Backend"]
+    CloudBackend.Auth[Authentication]
+    CloudBackend.Api[Backend API]
+  end
+  Customer -. "opens in browser" .-> CloudUi.Web
+  CloudUi.Web -. "refreshes token" .-> CloudBackend.Auth
+  CloudUi.Web -. "requests data" .-> CloudBackend.Api

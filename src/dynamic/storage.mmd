@@ -1,0 +1,16 @@
+---
+title: "Data Stores"
+---
+graph TB
+  subgraph CloudBackend["Backend"]
+    CloudBackend.Api[Backend API]
+    CloudBackend.Auth[Authentication]
+  end
+  subgraph CloudStorage["Data Stores"]
+    CloudStorage.Cache([Session Data])
+    CloudStorage.Db([Persistent Data])
+  end
+  CloudBackend.Auth -. "keeps active sessions" .-> CloudStorage.Cache
+  CloudBackend.Api -. "requests persistent data" .-> CloudStorage.Db
+  CloudBackend.Api -. "requests session data" .-> CloudStorage.Cache
+  CloudBackend.Api -. "validates bearer token" .-> CloudBackend.Auth

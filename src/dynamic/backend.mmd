@@ -1,0 +1,17 @@
+---
+title: "Backend"
+---
+graph TB
+  subgraph Cloud["Cloud System"]
+    Cloud.Ui[Frontend]
+    subgraph Cloud.Backend["Backend"]
+      Cloud.Backend.Api[Backend API]
+      Cloud.Backend.Auth[Authentication]
+    end
+    Cloud.Storage([Data Stores])
+  end
+  Cloud.Ui -. "refreshes token" .-> Cloud.Backend.Auth
+  Cloud.Ui -. "requests data" .-> Cloud.Backend.Api
+  Cloud.Backend.Api -. "validates bearer token" .-> Cloud.Backend.Auth
+  Cloud.Backend.Auth -. "keeps active sessions" .-> Cloud.Storage
+  Cloud.Backend.Api -. "[...]" .-> Cloud.Storage

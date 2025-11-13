@@ -13,6 +13,6 @@
     "build": "likec4 build",
     "start": "likec4 start",
     "serve": "http-server dist -p 8080 -o",
-    "mermaid": "likec4 gen mermaid -o ./dist/mermaid"
+    "mermaid": "likec4 gen mermaid"
   }
 }

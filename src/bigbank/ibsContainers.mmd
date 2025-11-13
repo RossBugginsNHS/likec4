@@ -1,0 +1,24 @@
+---
+title: "Internet Banking System / Containers"
+---
+graph TB
+  Customer[fa:fa-user Personal Banking Customer]
+  subgraph BigbankInternetBankingSystem["Internet Banking System"]
+    BigbankInternetBankingSystem.MobileApp[Mobile App]
+    BigbankInternetBankingSystem.WebApplication[Web Application]
+    BigbankInternetBankingSystem.SinglePageApplication[Single-Page Application]
+    BigbankInternetBankingSystem.ApiApplication[API Application]
+    BigbankInternetBankingSystem.Database([Database])
+  end
+  BigbankMainframe[Mainframe Banking System]
+  BigbankEmail[E-mail System]
+  Customer -. "Views account balances, and makes \npayments using" .-> BigbankInternetBankingSystem.SinglePageApplication
+  Customer -. "Views account balances, and makes \npayments using" .-> BigbankInternetBankingSystem.MobileApp
+  Customer -. "Visits bigbank.com using HTTPS" .-> BigbankInternetBankingSystem.WebApplication
+  BigbankInternetBankingSystem.SinglePageApplication -. "Makes API calls to" .-> BigbankInternetBankingSystem.ApiApplication
+  BigbankInternetBankingSystem.WebApplication -. "Delivers to the customer's web browser" .-> BigbankInternetBankingSystem.SinglePageApplication
+  BigbankInternetBankingSystem.MobileApp -. "Makes API calls to" .-> BigbankInternetBankingSystem.ApiApplication
+  BigbankInternetBankingSystem.ApiApplication -. "Reads from and writes to" .-> BigbankInternetBankingSystem.Database
+  BigbankInternetBankingSystem.ApiApplication -. "Makes API calls to" .-> BigbankMainframe
+  BigbankInternetBankingSystem.ApiApplication -. "Sends e-mail using" .-> BigbankEmail
+  BigbankEmail -. "Sends e-mails to" .-> Customer

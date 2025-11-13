@@ -1,0 +1,13 @@
+---
+title: "Applications / Single Page Application"
+---
+graph TB
+  Customer[fa:fa-user Personal Banking Customer]
+  subgraph BigbankInternetBankingSystem["Internet Banking System"]
+    BigbankInternetBankingSystem.WebApplication[Web Application]
+    BigbankInternetBankingSystem.SinglePageApplication[Single-Page Application]
+    BigbankInternetBankingSystem.ApiApplication[API Application]
+  end
+  Customer -. "Views account balances, and makes \npayments using" .-> BigbankInternetBankingSystem.SinglePageApplication
+  BigbankInternetBankingSystem.WebApplication -. "Delivers to the customer's web browser" .-> BigbankInternetBankingSystem.SinglePageApplication
+  BigbankInternetBankingSystem.SinglePageApplication -. "Makes API calls to" .-> BigbankInternetBankingSystem.ApiApplication

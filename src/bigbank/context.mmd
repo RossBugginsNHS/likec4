@@ -1,0 +1,14 @@
+---
+title: "Internet Banking System / SystemContext"
+---
+graph TB
+  subgraph Bigbank["Big Bank plc"]
+    Bigbank.InternetBankingSystem[Internet Banking System]
+    Bigbank.Mainframe[Mainframe Banking System]
+    Bigbank.Email[E-mail System]
+  end
+  Customer[fa:fa-user Personal Banking Customer]
+  Bigbank.InternetBankingSystem -. "Gets account information from, and makes \npayments using" .-> Bigbank.Mainframe
+  Bigbank.InternetBankingSystem -. "Sends e-mail using" .-> Bigbank.Email
+  Bigbank.Email -. "Sends e-mails to" .-> Customer
+  Customer -. "Views account balances, and makes \npayments using" .-> Bigbank.InternetBankingSystem

@@ -1,0 +1,30 @@
+---
+title: "Applications / API Application"
+---
+graph TB
+  BigbankInternetBankingSystemSinglePageApplication[Single-Page Application]
+  BigbankInternetBankingSystemMobileApp[Mobile App]
+  subgraph BigbankInternetBankingSystemApiApplication["API Application"]
+    BigbankInternetBankingSystemApiApplication.SigninController[Sign In Controller]
+    BigbankInternetBankingSystemApiApplication.AccountsSummaryController[Accounts Summary Controller]
+    BigbankInternetBankingSystemApiApplication.ResetPasswordController[Reset Password Controller]
+    BigbankInternetBankingSystemApiApplication.MainframeBankingSystemFacade[Mainframe Banking System Facade]
+    BigbankInternetBankingSystemApiApplication.SecurityComponent[Security Component]
+    BigbankInternetBankingSystemApiApplication.EmailComponent[E-mail Component]
+  end
+  BigbankMainframe[Mainframe Banking System]
+  BigbankInternetBankingSystemDatabase([Database])
+  BigbankEmail[E-mail System]
+  BigbankInternetBankingSystemSinglePageApplication -. "Makes API calls to" .-> BigbankInternetBankingSystemApiApplication.SigninController
+  BigbankInternetBankingSystemSinglePageApplication -. "Makes API calls to" .-> BigbankInternetBankingSystemApiApplication.AccountsSummaryController
+  BigbankInternetBankingSystemSinglePageApplication -. "Makes API calls to" .-> BigbankInternetBankingSystemApiApplication.ResetPasswordController
+  BigbankInternetBankingSystemMobileApp -. "Makes API calls to" .-> BigbankInternetBankingSystemApiApplication.SigninController
+  BigbankInternetBankingSystemMobileApp -. "Makes API calls to" .-> BigbankInternetBankingSystemApiApplication.AccountsSummaryController
+  BigbankInternetBankingSystemMobileApp -. "Makes API calls to" .-> BigbankInternetBankingSystemApiApplication.ResetPasswordController
+  BigbankInternetBankingSystemApiApplication.SigninController -. "Uses" .-> BigbankInternetBankingSystemApiApplication.SecurityComponent
+  BigbankInternetBankingSystemApiApplication.AccountsSummaryController -. "Uses" .-> BigbankInternetBankingSystemApiApplication.MainframeBankingSystemFacade
+  BigbankInternetBankingSystemApiApplication.ResetPasswordController -. "Uses" .-> BigbankInternetBankingSystemApiApplication.SecurityComponent
+  BigbankInternetBankingSystemApiApplication.ResetPasswordController -. "Uses" .-> BigbankInternetBankingSystemApiApplication.EmailComponent
+  BigbankInternetBankingSystemApiApplication.SecurityComponent -. "Reads from and writes to" .-> BigbankInternetBankingSystemDatabase
+  BigbankInternetBankingSystemApiApplication.MainframeBankingSystemFacade -. "Makes API calls to" .-> BigbankMainframe
+  BigbankInternetBankingSystemApiApplication.EmailComponent -. "Sends e-mail using" .-> BigbankEmail

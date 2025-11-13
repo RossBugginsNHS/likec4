@@ -1,0 +1,17 @@
+---
+title: "Applications / Mobile Application"
+---
+graph TB
+  Customer[fa:fa-user Personal Banking Customer]
+  subgraph BigbankInternetBankingSystem["Internet Banking System"]
+    BigbankInternetBankingSystem.MobileApp[Mobile App]
+    subgraph BigbankInternetBankingSystem.ApiApplication["API Application"]
+      BigbankInternetBankingSystem.ApiApplication.SigninController[Sign In Controller]
+      BigbankInternetBankingSystem.ApiApplication.AccountsSummaryController[Accounts Summary Controller]
+      BigbankInternetBankingSystem.ApiApplication.ResetPasswordController[Reset Password Controller]
+    end
+  end
+  Customer -. "Views account balances, and makes \npayments using" .-> BigbankInternetBankingSystem.MobileApp
+  BigbankInternetBankingSystem.MobileApp -. "Makes API calls to" .-> BigbankInternetBankingSystem.ApiApplication.SigninController
+  BigbankInternetBankingSystem.MobileApp -. "Makes API calls to" .-> BigbankInternetBankingSystem.ApiApplication.AccountsSummaryController
+  BigbankInternetBankingSystem.MobileApp -. "Makes API calls to" .-> BigbankInternetBankingSystem.ApiApplication.ResetPasswordController

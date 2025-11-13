@@ -1,0 +1,24 @@
+---
+title: "Use Cases / Story 1.1 - User dashboard"
+---
+graph LR
+  Customer[fa:fa-user Customer]
+  subgraph Cloud["Cloud System"]
+    Cloud.UiWeb[Customer Dashboard]
+    subgraph Cloud.Backend["Backend"]
+      Cloud.Backend.Auth[Authentication]
+      Cloud.Backend.Api[Backend API]
+    end
+    subgraph Cloud.Storage["Data Stores"]
+      Cloud.Storage.Db([Persistent Data])
+      Cloud.Storage.Cache([Session Data])
+    end
+  end
+  Customer -. "opens in browser" .-> Cloud.UiWeb
+  Cloud.UiWeb -. "updates token if needed" .-> Cloud.Backend.Auth
+  Cloud.UiWeb -. "GET request" .-> Cloud.Backend.Api
+  Cloud.Backend.Api -. "validates bearer token" .-> Cloud.Backend.Auth
+  Cloud.Backend.Api -. "requests persistent data" .-> Cloud.Storage.Db
+  Cloud.Backend.Api -. "requests session data" .-> Cloud.Storage.Cache
+  Cloud.Backend.Api -. "process" .-> Cloud.Backend.Api
+  Cloud.Backend.Api -.-> Cloud.UiWeb

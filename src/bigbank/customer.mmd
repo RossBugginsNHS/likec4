@@ -1,0 +1,17 @@
+---
+title: "Personal Banking Customer"
+---
+graph TB
+  Customer[fa:fa-user Personal Banking Customer]
+  subgraph Bigbank["Big Bank plc"]
+    subgraph Bigbank.InternetBankingSystem["Internet Banking System"]
+      Bigbank.InternetBankingSystem.SinglePageApplication[Single-Page Application]
+      Bigbank.InternetBankingSystem.MobileApp[Mobile App]
+    end
+    Bigbank.SupportStaff[fa:fa-user Customer Service Staff]
+    Bigbank.Atm[ATM]
+  end
+  Customer -. "Views account balances, and makes \npayments using" .-> Bigbank.InternetBankingSystem.SinglePageApplication
+  Customer -. "Views account balances, and makes \npayments using" .-> Bigbank.InternetBankingSystem.MobileApp
+  Customer -. "Asks questions to" .-> Bigbank.SupportStaff
+  Customer -. "Withdraws cash using" .-> Bigbank.Atm

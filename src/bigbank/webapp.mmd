@@ -1,0 +1,13 @@
+---
+title: "Applications / Web Application"
+---
+graph TB
+  Customer[fa:fa-user Personal Banking Customer]
+  subgraph Bigbank["Big Bank plc"]
+    subgraph Bigbank.InternetBankingSystem["Internet Banking System"]
+      Bigbank.InternetBankingSystem.WebApplication[Web Application]
+      Bigbank.InternetBankingSystem.SinglePageApplication[Single-Page Application]
+    end
+  end
+  Customer -. "Visits bigbank.com using HTTPS" .-> Bigbank.InternetBankingSystem.WebApplication
+  Bigbank.InternetBankingSystem.WebApplication -. "Delivers to the customer's web browser" .-> Bigbank.InternetBankingSystem.SinglePageApplication

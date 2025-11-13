@@ -1,0 +1,23 @@
+---
+title: "Use Cases / Story 1.2 - Auth token update"
+---
+graph LR
+  Customer[fa:fa-user Customer]
+  subgraph Cloud["Cloud System"]
+    subgraph Cloud.Ui["Frontend"]
+      Cloud.Ui.Web[Customer Dashboard]
+    end
+    subgraph Cloud.Backend["Backend"]
+      Cloud.Backend.Auth[Authentication]
+    end
+    subgraph Cloud.Storage["Data Stores"]
+      Cloud.Storage.Cache([Session Data])
+    end
+  end
+  Customer -. "interacts" .-> Cloud.Ui.Web
+  Cloud.Ui.Web -. "refreshes token" .-> Cloud.Backend.Auth
+  Cloud.Backend.Auth -. "lookups" .-> Cloud.Storage.Cache
+  Cloud.Backend.Auth -.-> Cloud.Backend.Auth
+  Cloud.Backend.Auth -. "stores" .-> Cloud.Storage.Cache
+  Cloud.Backend.Auth -. "returns tokens" .-> Cloud.Ui.Web
+  Cloud.Ui.Web -.-> Cloud.Ui.Web

@@ -1,0 +1,22 @@
+---
+title: "Big Bank - Landscape"
+---
+graph TB
+  Customer[fa:fa-user Personal Banking Customer]
+  subgraph Bigbank["Big Bank plc"]
+    Bigbank.SupportStaff[fa:fa-user Customer Service Staff]
+    Bigbank.Atm[ATM]
+    Bigbank.InternetBankingSystem[Internet Banking System]
+    Bigbank.Backoffice[fa:fa-user Back Office Staff]
+    Bigbank.Email[E-mail System]
+    Bigbank.Mainframe[Mainframe Banking System]
+  end
+  Customer -. "Asks questions to" .-> Bigbank.SupportStaff
+  Customer -. "Withdraws cash using" .-> Bigbank.Atm
+  Customer -. "Views account balances, and makes \npayments using" .-> Bigbank.InternetBankingSystem
+  Bigbank.SupportStaff -. "Uses" .-> Bigbank.Mainframe
+  Bigbank.Backoffice -. "Uses" .-> Bigbank.Mainframe
+  Bigbank.Atm -. "Uses" .-> Bigbank.Mainframe
+  Bigbank.InternetBankingSystem -. "Gets account information from, and makes \npayments using" .-> Bigbank.Mainframe
+  Bigbank.InternetBankingSystem -. "Sends e-mail using" .-> Bigbank.Email
+  Bigbank.Email -. "Sends e-mails to" .-> Customer
