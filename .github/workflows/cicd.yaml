@@ -15,7 +15,9 @@ permissions:
 
 jobs:
   build-pages:
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/nhsdigital/nhs-notify-devcontainer-loaded:1.0.19
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -42,6 +44,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/nhsdigital/nhs-notify-devcontainer-loaded:1.0.19
     needs: build-pages
     steps:
       - name: Deploy to GitHub Pages
